@@ -1,0 +1,70 @@
+{% extends 'main/parts/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="flex">
+        <!--Process-->
+        <div class="w-full relative min-w-[600px] p-5 bg-slate-50 h-screen border flex-1 flex justify-center">            
+            <div class="absolute top-4 z-50 right-4">
+                <button class="bg-emerald-400 font-bold font-roboto hover:bg-emerald-500 text-white rounded-lg px-10 py-2">Run</button>
+
+            </div>
+            <div class="flex flex-col">
+                <!--URl-->
+                <div class="flex flex-col">
+                    <div class="w-[26rem] h-24 border bg-white shadow-lg px-3 rounded-xl flex flex-col justify-center">
+                        <h1 class="text-center font-bold font-roboto">Website URL:</h1>
+                        <h1 class="text-center font-roboto line-clamp-2">{{url}}</h1>
+                    </div>
+                </div>
+                <!---->
+
+                <div class="flex flex-col">
+                    <!--Line-->
+                    <div class="w-full flex justify-center">
+                        <div class="h-11 border border-gray-400"></div>
+                    </div>
+
+                    <!--Card-->
+                    <div class="w-[26rem] h-24 border bg-white shadow-lg px-3 rounded-xl flex flex-col justify-center">
+                        <h1 class="text-center font-bold font-roboto">Website Title:</h1>
+                        <h1 class="text-center font-roboto line-clamp-2">{{title}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!--rightbar-->
+        <div class="w-96 border-l h-screen px-6 py-10 font-roboto space-y-5">
+
+            <div class="w-full space-y-1">
+                <h1>Process Name</h1>
+                <input type="text" class="w-full rounded-md border-gray-400">
+            </div>
+
+            <div class="w-full space-y-1">
+                <h1>Note (optional)</h1>
+                <textarea type="text" class="w-full rounded-md border-gray-400"> </textarea>
+            </div>
+
+            <div class="w-full space-y-1">
+                <h1>Get tag</h1>
+                <input placeholder="Ex: input" type="text" class="w-full rounded-md border-gray-400">
+            </div>
+
+            <div class="w-full space-y-1">
+                <select class="rounded-lg border-gray-200" id="">
+                    <option value="ID">Tag Id</option>
+                    <option value="Class Name">Tag Class Name</option>
+                </select>
+                <input type="text" placeholder="Ex: email" class="w-full rounded-md border-gray-400">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+  <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

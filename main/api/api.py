@@ -5,9 +5,26 @@ from .serializers import ProjectSerializer
 
 @api_view(['POST'])
 def create_project(request):
-    new_project = ProjectSerializer(data=request.data)
+    if request.user.is_authenticated:
+        data = request.data
+        data['project_owner'] = request.user
 
-    if new_project.is_valid():
-        new_project.save()
-        return Response({ 'message' : 'Success' })
-    return Response({ 'message' : 'Something Wrong' })
+        new_project = ProjectSerializer(data=data)
+
+        if new_project.is_valid():
+            new_project.save()
+            print(new_project.data)
+            return Response({ 'result' : new_project.data })
+    return Response({ 'message' : 'Please login' })
+
+
+@api_view(['DELETE'])
+def delete_project(request, id=False):
+    print(id)
+    if request.user.is_authenticated:
+        if id:
+            detele_proj = Project.objects.get(project_id = id)
+            detele_proj.delete()
+            return Response({ 'message' : 'Deleted Successfully' })
+        return Response({ 'message' : 'Invalid ID' })
+    return Response({ 'message' : 'Please login' })

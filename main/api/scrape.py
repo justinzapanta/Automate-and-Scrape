@@ -26,9 +26,5 @@ class Automate:
         self.browser.close()
         self.playwright.stop()
 
-browser = Automate('https://www.real.ph/')
-tags = browser.tag_and_class('div', 'slick-slide')
-child = browser.get_child(tags, 'p', 'listing-card--content__price')
-print(browser.get_text_content(child))
-browser.stop()
-            
+    def get_title(self):
+        return self.page.title()

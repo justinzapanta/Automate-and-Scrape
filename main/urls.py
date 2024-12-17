@@ -4,8 +4,9 @@ from .api import api
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('scrape/', views.scrape, name='scrape'),
+    path('automate/<str:id>', views.scrape, name='scrape'),
 
     #API
-    path('api/project', api.create_project)
+    path('api/project', api.create_project),
+    path('api/project/<str:id>', api.delete_project)
 ]
