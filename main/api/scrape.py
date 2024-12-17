@@ -4,7 +4,7 @@ class Automate:
     def __init__(self, url:str):
         self.url = url
         self.playwright = sync_playwright().start()
-        self.browser = self.playwright.chromium.launch(headless=True)
+        self.browser = self.playwright.chromium.launch(headless=False)
         self.page = self.browser.new_page()
         self.page.goto(self.url)
 

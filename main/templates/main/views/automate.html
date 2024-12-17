@@ -39,26 +39,55 @@
         <div class="w-96 border-l h-screen px-6 py-10 font-roboto space-y-5">
 
             <div class="w-full space-y-1">
-                <h1>Process Name</h1>
-                <input type="text" class="w-full rounded-md border-gray-400">
+                <h1>Step Name</h1>
+                <input type="text" placeholder="Ex: Enter Email" class="w-full rounded-md border-gray-400">
             </div>
 
             <div class="w-full space-y-1">
-                <h1>Note (optional)</h1>
-                <textarea type="text" class="w-full rounded-md border-gray-400"> </textarea>
+                <h1>Detail (optional)</h1>
+                <textarea placeholder="Ex: This step will enter my email into the input field" type="text" class="w-full rounded-md border-gray-400"></textarea>
             </div>
 
-            <div class="w-full space-y-1">
+            <hr class="border-gray-400">
+
+            <!--Tag info-->
+            <div class="w-full space-y-2">
+                <!--Input tag-->
                 <h1>Get tag</h1>
-                <input placeholder="Ex: input" type="text" class="w-full rounded-md border-gray-400">
+                <input id="tag" placeholder="Ex: input" type="text" class="w-full rounded-md border-gray-400">
+
+                <!--Get By-->
+                <select onchange="on_get_by_selected(this)" class="rounded-lg border-gray-400" id="">
+                    <option value="ID">Get By Id</option>
+                    <option value="Class Name">Get By Class</option>
+                </select>
+
+                <!--automatic type-->
+                <input id="tag_name" type="text" placeholder="Ex: email" class="w-full rounded-md border-gray-400">
+                
+                <div id="index_container" class="flex mt-1 hidden">
+                    <div class="h-full my-auto">
+                        <h1 class="mr-1">Index</h1>
+                    </div>
+                    <input type="number" placeholder="Ex: 1" class="w-28 rounded-md border-gray-400">
+                </div>
             </div>
 
-            <div class="w-full space-y-1">
-                <select class="rounded-lg border-gray-200" id="">
-                    <option value="ID">Tag Id</option>
-                    <option value="Class Name">Tag Class Name</option>
+            <hr class="border-gray-400 mt-1">
+
+            <!--Action-->
+            <div class="w-full space-y-2">
+                <h1>Action</h1>
+                <select onchange="on_action_selected(this)" class="rounded-lg border-gray-400" id="">
+                    <option value="type">Type</option>
+                    <option value="click">Click</option>
                 </select>
-                <input type="text" placeholder="Ex: email" class="w-full rounded-md border-gray-400">
+                <input id="type" type="text" placeholder="Ex: example@gmail.com" class="w-full rounded-md border-gray-400">
+            </div>
+
+            <!--Test button-->
+            <div class="w-full flex justify-center">
+                <button onclick="test_step()" class="px-10 text-lg py-2 bg-emerald-400 hover:bg-emerald-500 text-white font-bold font-roboto rounded-lg">Test</button>
             </div>
         </div>
     </div>
@@ -66,5 +95,5 @@
 
 
 {% block script %}
-  <script src="{% static 'js/index.js' %}"></script>
+  <script src="{% static 'js/automation.js' %}"></script>
 {% endblock %}

@@ -2,6 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from ..models import Project
 from .serializers import ProjectSerializer
+from .scrape import Automate
 
 @api_view(['POST'])
 def create_project(request):
@@ -28,3 +29,14 @@ def delete_project(request, id=False):
             return Response({ 'message' : 'Deleted Successfully' })
         return Response({ 'message' : 'Invalid ID' })
     return Response({ 'message' : 'Please login' })
+
+
+@api_view(['POST'])
+def test_step(request):
+    data = request.data
+    print(data)
+    website = Automate('https://brian578.pythonanywhere.com/sign-in/')
+    input_tags = website.tag_and_class(tag=data['tag_type'], class_=data['tag_name'])
+    print(input_tags.count())
+    website.stop()
+    return Response({'result' : 'Success'})
