@@ -16,11 +16,18 @@ class Automate:
         child = parent.locator(f'{tag}.{class_}')
         return child
 
+    def get_index(self, instance, index):
+        return instance.nth(index-1)
+
     def get_text_content(self, instance):
         text_list = []
         for index in range(instance.count()):
             text_list.append(instance.nth(index).text_content().strip())
-        return text_list            
+        return text_list
+    
+    def action(self, instance, action_type, user_input):
+        if action_type == 'input':
+            instance.type(user_input)
 
     def stop(self):
         self.browser.close()

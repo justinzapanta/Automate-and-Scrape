@@ -34,9 +34,12 @@ def delete_project(request, id=False):
 @api_view(['POST'])
 def test_step(request):
     data = request.data
-    print(data)
     website = Automate('https://brian578.pythonanywhere.com/sign-in/')
     input_tags = website.tag_and_class(tag=data['tag_type'], class_=data['tag_name'])
+    input_ = website.get_index(instance=input_tags, index=int(data['index']))
+    action = website.action(instance=input_, action_type='input', user_input=data['type'])
     print(input_tags.count())
+
+    a = input('stop?')
     website.stop()
     return Response({'result' : 'Success'})

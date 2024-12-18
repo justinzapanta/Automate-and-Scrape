@@ -27,7 +27,7 @@ function on_action_selected(this_){
 
 const tag_type = document.querySelector('#tag')
 const tag_name = document.querySelector('#tag_name') 
-
+const index_input = document.querySelector('#index_input')
 async function test_step(){
     const csrf_token = getCSRFToken()
     const response = await fetch('/api/test', {
@@ -39,7 +39,8 @@ async function test_step(){
         body : JSON.stringify({
             tag_name : tag_name.value,
             tag_type : tag_type.value,
-            type : type.value
+            type : type.value,
+            index : index_input.value
         })
     })
 }
